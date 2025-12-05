@@ -1,55 +1,90 @@
-import { Link } from "react-router-dom" 
-import style from "./navbar.module.css";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import styles from "./navbar.module.css";
 import { Fragment } from "react";
-import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 
 function NavBar() {
-
     let voterId = sessionStorage.getItem("voterId");
     const id = sessionStorage.getItem("id");
+    const navigate = useNavigate();
+    const location = useLocation();
 
-    let navigate = useNavigate();
-
-    let logout = ()=>{
-        if (id){
+    const logout = () => {
+        if (id) {
             sessionStorage.removeItem("id");
-            toast.success("Logout");
+            toast.success("Admin Logout Successful");
             navigate("/");
-        } else{
+        } else {
             sessionStorage.removeItem("voterId");
-            toast.success("Logout");
+            toast.success("Voter Logout Successful");
             navigate("/");
         }
-    }
+    };
+
+    // Helper to check active link for styling
+    const isActive = (path) => location.pathname === path;
 
     return (
         <>
-            <nav id={style.nav}>
-            <figure>
-                <img src="/logo.png" alt="logo voting survey" title="voting survey"/>
-            </figure>
-            <h1 className={style.title}>Voting Survey</h1>
+            <Toaster position="top-center" />
+            <nav className={styles.navbar}>
+                {/* Logo & Brand Section */}
+                <Link to="/" className={styles.brandGroup}>
+                    <div className={styles.logoWrapper}>
+                        <img 
+                            src="/logo.png" 
+                            alt="voting survey logo" 
+                            className={styles.logoImage}
+                        />
+                    </div>
+                    <h1 className={styles.title}>Voting Survey</h1>
+                </Link>
 
-            <ul>
-                <li><Link to="/">Home</Link></li>
-                {id || voterId ? (
-                    <Fragment>
-                        <li className="g-btn"><Link to={id ? "/adminDashbord":"/profile"} >profile</Link></li>
-                        <li className="g-btn" onClick={logout}>LogOut</li>
-                    </Fragment>
-                ) : (
-                    <Fragment>
-                        <Link to="/login" ><li className="g-btn">Login</li></Link>
-                        <Link to="/register"><li className="g-btn">Signup</li></Link>
-                    </Fragment>
-                )}
-            </ul>
+                {/* Navigation Links */}
+                <ul className={styles.navLinks}>
+                    <li>
+                        <Link 
+                            to="/" 
+                            className={`${styles.link} ${isActive('/') ? styles.activeLink : ''}`}
+                        >
+                            Home
+                        </Link>
+                    </li>
 
-
-        </nav>
+                    {id || voterId ? (
+                        <Fragment>
+                            <li>
+                                <Link 
+                                    to={id ? "/adminDashbord" : "/profile"} 
+                                    className={`${styles.link} ${isActive(id ? "/adminDashbord" : "/profile") ? styles.activeLink : ''}`}
+                                >
+                                    {id ? "Dashboard" : "My Profile"}
+                                </Link>
+                            </li>
+                            <li>
+                                <button onClick={logout} className={styles.logoutBtn}>
+                                    Log Out
+                                </button>
+                            </li>
+                        </Fragment>
+                    ) : (
+                        <Fragment>
+                            <li>
+                                <Link to="/login" className={styles.loginBtn}>
+                                    Login
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/register" className={styles.signupBtn}>
+                                    Sign Up
+                                </Link>
+                            </li>
+                        </Fragment>
+                    )}
+                </ul>
+            </nav>
         </>
-    )
+    );
 }
 
-export default NavBar
+export default NavBar;

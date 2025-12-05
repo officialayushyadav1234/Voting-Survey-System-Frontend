@@ -1,56 +1,184 @@
-#nav{
-    height: 70px;
+:root {
+    --nav-bg: rgba(15, 23, 42, 0.85); /* Dark Slate with transparency */
+    --nav-border: rgba(255, 255, 255, 0.1);
+    --primary: #3b82f6;
+    --primary-hover: #2563eb;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --danger: #ef4444;
+}
+
+/* Main Navbar Container */
+.navbar {
+    position: sticky; /* Keeps navbar at top when scrolling */
+    top: 0;
+    z-index: 1000;
+    height: 72px;
     width: 100%;
-    /* background-color: rgb(28, 24, 24); */
-    background-image: url('/img/bg5.jpg'); /* Replace with your image URL */
-    background-size: cover; /* Ensures the image covers the entire area */
-    background-repeat: no-repeat; /* Prevents tiling of the image */
-    color: whitesmoke;
-    padding: 5px 20px;
+    box-sizing: border-box;
+    
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 0 32px;
+
+    /* Glassmorphism Effect */
+    background-color: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--nav-border);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
-#nav>figure{
-    height: 100%;
-    width: 5%;
+/* Left Side: Brand */
+.brandGroup {
     display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+.brandGroup:hover {
+    opacity: 0.9;
+}
+
+.logoWrapper {
+    height: 40px;
+    width: 40px;
+    background: linear-gradient(135deg, var(--primary), #8b5cf6);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-
-    background-image: url('/img/bg5.jpg'); 
-    background-size: cover;
-    background-repeat: no-repeat; 
-    background-position: center; 
-}
-#nav>figure>img{
-    height: 100%;
-    cursor: pointer;
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
 }
 
-#nav>ul{
-    /* border: 1px solid yellow; */
+.logoImage {
+    height: 24px;
+    width: auto;
+    filter: brightness(0) invert(1); /* Ensures logo is white if it's black */
+}
+
+/* Title with Modern Gradient */
+.title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.5px;
+    background: linear-gradient(to right, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Right Side: Navigation */
+.navLinks {
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding: 5px, 10px;
-}
-#nav>ul>li{
-    text-transform: capitalize;
+    gap: 24px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.title {
-    font-size: xx-large;
-    font-stretch:extra-expanded;
-    background: linear-gradient(to right,red, #c8e255, #f7b488,rgba(59, 59, 235, 0.829),rgb(212, 0, 255)); /* Gradient colors */
+/* Standard Text Links */
+.link {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.link:hover {
+    color: var(--text-main);
+}
+
+/* Active Link Indicator */
+.activeLink {
+    color: var(--text-main);
+}
+
+.activeLink::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--primary);
+    border-radius: 2px;
+    box-shadow: 0 0 8px var(--primary);
+}
+
+/* Buttons */
+.loginBtn {
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.loginBtn:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.signupBtn {
+    background: var(--primary);
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 9px 20px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.signupBtn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+.logoutBtn {
+    background: transparent;
+    border: 1px solid rgba(239, 68, 68, 0.5);
+    color: #fca5a5;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 18px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.logoutBtn:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border-color: #ef4444;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 16px;
+    }
     
-    /* Standard and vendor-prefixed properties for background-clip */
-    -webkit-background-clip: text;  /* For Chrome, Safari 3+ */
-    -moz-background-clip: text;     /* For Firefox (not required in newer versions) */
-    -o-background-clip: text;       /* For Opera */
-    background-clip: text;          /* Standard property */
-    
-    -webkit-text-fill-color: transparent; /* Needed to make the gradient visible on text */
+    .title {
+        display: none; /* Hide text on small screens */
+    }
+
+    .navLinks {
+        gap: 12px;
+    }
+
+    .signupBtn, .logoutBtn {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
 }
