@@ -1,31 +1,167 @@
+:root {
+    --bg-dark: #0f172a;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #3b82f6;
+    --row-hover: rgba(255, 255, 255, 0.03);
+}
+
 .container {
-    width: 80%;
-    margin: auto;
-    text-align: center;
+    width: 100%;
+    background: transparent;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
 }
 
+/* Header Section inside component */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 0 4px;
+}
+
+.title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.badge {
+    background: rgba(59, 130, 246, 0.2);
+    color: #60a5fa;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+}
+
+/* Scrollable Table Container */
 .tableContainer {
-    max-height: 250px; /* Adjust height to show 5 rows */
+    max-height: 300px; /* Fixed height for scrolling */
     overflow-y: auto;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
+    background: rgba(15, 23, 42, 0.4);
+    
+    /* Custom Scrollbar */
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent) transparent;
 }
 
+.tableContainer::-webkit-scrollbar {
+    width: 6px;
+}
+
+.tableContainer::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+}
+
+/* Table Styles */
 .table {
     width: 100%;
     border-collapse: collapse;
+    font-size: 13px;
 }
 
-.table th, .table td {
-    padding: 10px;
-    border: 1px solid #ddd;
+.stickyHeader {
+    position: sticky;
+    top: 0;
+    background: #1e293b; /* Solid background to cover scrolling text */
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 11px;
+    padding: 12px 16px;
     text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.table th {
-    background-color: #f4f4f4;
+.row {
+    border-bottom: 1px solid var(--border-color);
+    transition: background 0.2s;
 }
 
-tr:nth-child(even) {
-    background-color: #f9f9f9;
+.row:last-child {
+    border-bottom: none;
+}
+
+.row:hover {
+    background: var(--row-hover);
+}
+
+.row td {
+    padding: 12px 16px;
+    vertical-align: middle;
+}
+
+/* Cell Specifics */
+.idCell {
+    font-family: monospace;
+    color: var(--text-muted);
+}
+
+.nameCell {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.dateCell {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* Status Pill */
+.statusPill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.active {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.inactive {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+/* Loading/Error */
+.loading, .error {
+    text-align: center;
+    padding: 20px;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.error {
+    color: #ef4444;
 }

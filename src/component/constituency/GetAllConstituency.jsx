@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import styles from "./GetAllConstituency.module.css";
 
 const GetAllConstituency = () => {
@@ -24,34 +25,65 @@ const GetAllConstituency = () => {
             });
     }, []);
 
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error: {error}</p>;
+    // Animation Variants
+    const tableVariants = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: { staggerChildren: 0.05 }
+        }
+    };
+
+    const rowVariants = {
+        hidden: { opacity: 0, x: -10 },
+        show: { opacity: 1, x: 0 }
+    };
+
+    if (loading) return <div className={styles.loading}>Loading directory...</div>;
+    if (error) return <div className={styles.error}>Error: {error}</div>;
 
     return (
         <div className={styles.container}>
-            <h2>Constituency List</h2>
+            <div className={styles.header}>
+                <h3 className={styles.title}>All Constituencies</h3>
+                <span className={styles.badge}>{constituencies.length} Total</span>
+            </div>
+            
             <div className={styles.tableContainer}>
                 <table className={styles.table}>
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>State</th>
-                            <th>Status</th>
-                            <th>Last Election Date</th>
+                            <th className={styles.stickyHeader}>ID</th>
+                            <th className={styles.stickyHeader}>Name</th>
+                            <th className={styles.stickyHeader}>State</th>
+                            <th className={styles.stickyHeader}>Status</th>
+                            <th className={styles.stickyHeader}>Last Election</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <motion.tbody
+                        variants={tableVariants}
+                        initial="hidden"
+                        animate="show"
+                    >
                         {constituencies.map((constituency) => (
-                            <tr key={constituency.id}>
-                                <td>{constituency.id}</td>
-                                <td>{constituency.name}</td>
+                            <motion.tr 
+                                key={constituency.id} 
+                                variants={rowVariants}
+                                className={styles.row}
+                            >
+                                <td className={styles.idCell}>#{constituency.id}</td>
+                                <td className={styles.nameCell}>{constituency.name}</td>
                                 <td>{constituency.state}</td>
-                                <td>{constituency.electionActive ? "Active" : "Inactive"}</td>
-                                <td>{constituency.dols}</td>
-                            </tr>
+                                <td>
+                                    <span className={`${styles.statusPill} ${constituency.electionActive ? styles.active : styles.inactive}`}>
+                                        <span className={styles.dot}></span>
+                                        {constituency.electionActive ? "Active" : "Inactive"}
+                                    </span>
+                                </td>
+                                <td className={styles.dateCell}>{constituency.dols}</td>
+                            </motion.tr>
                         ))}
-                    </tbody>
+                    </motion.tbody>
                 </table>
             </div>
         </div>

@@ -1,33 +1,157 @@
-.container {
-    padding: 20px;
-    text-align: center;
-    /* background-color: #f9f9f985; */
-    background-image: url('/img/bg15.jpg');
-    background-size: cover; 
-    background-repeat: no-repeat;
-
+:root {
+    --bg-dark: #0f172a;
+    --card-bg: #1e293b; 
+    --border-color: #334155;
+    
+    /* Updated Color Palette for Clarity */
+    --text-white: #ffffff;
+    --text-highlight: #38bdf8; /* Bright Cyan for Candidate Names */
+    --text-gold: #facc15;      /* Yellow for Numbers */
+    --text-muted: #94a3b8;     /* Grey for labels */
+    
+    --success: #22c55e;
+    --danger: #ef4444;
 }
 
-.loading, .error {
-    font-size: 18px;
-    color: red;
-    font-weight: bold;
+.wrapper {
+    width: 100%;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--text-white);
+    padding: 24px;
+    box-sizing: border-box;
 }
 
-.constituencyBlock {
-    margin: 30px auto;
-    padding: 20px;
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 90%;
+/* Header */
+.pageHeader {
+    margin-bottom: 32px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 20px;
 }
 
-.constituencyTitle {
-    font-size: 22px;
-    margin-bottom: 10px;
-    color: #333;
+.mainTitle {
+    font-size: 36px;
+    font-weight: 800;
+    margin: 0;
+    color: var(--text-white);
+    letter-spacing: -1px;
+}
+
+.subTitle {
+    color: var(--text-muted);
+    font-size: 16px;
+    margin-top: 8px;
+}
+
+/* Grid Layout */
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 30px;
+}
+
+/* Card Styling */
+.constituencyCard {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Card Header */
+.cardHeader {
+    padding: 24px;
+    background: rgba(15, 23, 42, 0.6);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.headerInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.constituencyName {
+    margin: 0;
+    font-size: 26px; 
+    font-weight: 800;
+    color: var(--text-white); /* Pure white for max contrast */
+}
+
+.metaRow {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.stateTag {
+    font-size: 13px;
+    font-weight: 700;
+    color: #f472b6; /* Pink accent for State */
+    background: rgba(244, 114, 182, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+.constituencyId {
+    font-size: 13px;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.05);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+/* Status Badge */
+.statusBadge {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+}
+
+.active {
+    background: rgba(34, 197, 94, 0.15);
+    color: #4ade80; 
+    border: 1px solid rgba(34, 197, 94, 0.5);
+}
+
+.inactive {
+    background: rgba(239, 68, 68, 0.15);
+    color: #f87171; 
+    border: 1px solid rgba(239, 68, 68, 0.5);
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: currentColor;
+    border-radius: 50%;
+    box-shadow: 0 0 8px currentColor;
+}
+
+/* Table Styling */
+.tableWrapper {
+    width: 100%;
+    overflow-x: auto;
 }
 
 .table {
@@ -35,25 +159,109 @@
     border-collapse: collapse;
 }
 
-.table th, .table td {
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: center;
-}
-
 .table th {
-    background-color: #9eada1;
-    color: white;
+    text-align: left;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
+    background: rgba(15, 23, 42, 0.3);
+    text-transform: uppercase;
+    font-weight: 600;
 }
 
-.image {
-    width: 60px;
-    height: 60px;
-    border-radius: 5px;
+.table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+/* --- Candidate Name Improvements --- */
+.candidateCell {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* More space between image and name */
+}
+
+.smallLogo {
+    width: 42px; /* Slightly larger image */
+    height: 42px;
+    border-radius: 50%;
+    border: 2px solid var(--text-highlight); /* Blue border ring */
     object-fit: cover;
+    background-color: #000;
+}
+
+.cName {
+    font-size: 17px;        /* Larger font size */
+    font-weight: 700;       /* Bold text */
+    color: var(--text-highlight); /* Bright Cyan Color */
+    letter-spacing: 0.3px;
+    display: block;         /* Ensures it sits on its own line if needed */
+}
+
+.partyName {
+    font-size: 14px;
+    color: var(--text-muted); /* Distinct grey for party name */
+    font-weight: 500;
+}
+
+.voteCell {
+    font-weight: 700;
+    color: var(--text-gold);
+    text-align: right;
+    font-size: 18px; /* Big numbers */
+    font-feature-settings: "tnum";
+}
+
+.textRight {
+    text-align: right;
+}
+
+/* Loading / Error States */
+.loadingState {
+    text-align: center;
+    color: var(--text-white);
+    padding: 60px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255,255,255,0.1);
+    border-top-color: var(--text-highlight);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.errorBox {
+    color: #fca5a5;
+    background: rgba(239,68,68,0.15);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #ef4444;
+    font-weight: 600;
 }
 
 .noData {
+    color: var(--text-muted);
+    text-align: center;
+    padding: 60px;
+    background: var(--card-bg);
+    border-radius: 12px;
     font-size: 18px;
-    color: #777;
+}
+
+@media (max-width: 768px) {
+    .gridContainer {
+        grid-template-columns: 1fr;
+    }
 }
