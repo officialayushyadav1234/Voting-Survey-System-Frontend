@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+h1{
+    color: black;
+}
+
+body {
+    background-image: url('/img/bg6.jpg'); /* Replace with your image URL */
+    background-size: cover; /* Ensures the image covers the entire area */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
+    background-position: center; /* Centers the image */
+    overflow-y: scroll; /* Enable vertical scrolling */
+}
+body::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, Edge */
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+ul,ol{
+    list-style: none;
+}
+
+.g-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(to bottom right, #141414, rgb(71, 71, 71),#181817);
+    color: white;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border-left: 8px solid #252525d4;
+    border-bottom: 3px solid #313130fd;
+    border-right: 8px solid #222221a2;
+    border-top: 3px solid #1a1919ea;
+}
+
+.g-btn:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(233, 106, 106, 0.3), 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.g-btn:active {
+    transform: translateY(2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+}

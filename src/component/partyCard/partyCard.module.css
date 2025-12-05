@@ -1,0 +1,57 @@
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+.partyContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    gap: 20px;
+    max-width: 600px; /* Allows only 2 cards at a time */
+    margin: auto;
+    padding: 10px;
+}
+
+.partyCard {
+    background-image: url('/img/bg18.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    /* background: #ffffff; */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    width: 280px;
+    text-align: center;
+    flex: 0 0 auto; /* Prevents shrinking */
+}
+
+.partySymbol {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.candidateImage {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-top: 10px;
+}
+
+.deleteButton {
+    background: red;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: 0.3s ease;
+}
+
+.deleteButton:hover {
+    background: darkred;
+}

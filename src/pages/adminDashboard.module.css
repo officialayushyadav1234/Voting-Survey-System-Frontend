@@ -1,0 +1,98 @@
+/* --- Variables for Easy Theming --- */
+:root {
+    --primary-bg: #f4f6f9;
+    --card-bg: #ffffff;
+    --accent-color: #4f46e5; /* Modern Indigo */
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Main Layout --- */
+.dashboardContainer {
+    min-height: 100vh;
+    background-color: var(--primary-bg);
+    padding: 2rem;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.header {
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.header p {
+    color: var(--text-light);
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+/* --- Responsive Grid System --- */
+.gridLayout {
+    display: grid;
+    /* Auto-fit magic: Creates as many columns as fit, min 350px wide */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+    gap: 1.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* --- Card Styles --- */
+.card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(229, 231, 235, 0.5);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Contains child content */
+}
+
+/* Hover Effect: Lifts the card slightly */
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(79, 70, 229, 0.3);
+}
+
+.cardTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #f3f4f6;
+}
+
+/* --- Utility Class for Wide Tables --- */
+/* Forces an element to span all available columns */
+.fullWidth {
+    grid-column: 1 / -1;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .dashboardContainer {
+        padding: 1rem;
+    }
+    
+    .gridLayout {
+        grid-template-columns: 1fr; /* Stack everything on mobile */
+        gap: 1rem;
+    }
+
+    .header h1 {
+        font-size: 1.75rem;
+    }
+}

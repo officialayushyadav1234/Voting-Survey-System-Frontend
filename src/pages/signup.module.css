@@ -1,0 +1,48 @@
+.container {
+    width: 50%;
+    margin: 50px auto; /* Added top and bottom margin */
+    padding: 20px;
+    background-color: #c9f0f54b;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.radioGroup {
+    display: flex;
+    gap: 10px;
+}
+
+.checkboxGroup {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
